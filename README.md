@@ -33,5 +33,6 @@
  https://www.cnblogs.com/wdliu/p/9530219.html
  https://blog.csdn.net/bbwangj/article/details/90573640
  https://blog.csdn.net/bbwangj/article/details/90573662
+ https://www.jianshu.com/p/ec128512af8e celery 常用配置
  
 
