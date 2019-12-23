@@ -33,6 +33,16 @@
  https://www.cnblogs.com/wdliu/p/9530219.html
  https://blog.csdn.net/bbwangj/article/details/90573640
  https://blog.csdn.net/bbwangj/article/details/90573662
- https://www.jianshu.com/p/ec128512af8e celery 常用配置
+ https://www.jianshu.com/p/ec128512af8e celery 常用配置\
+ 
+ 结果存储使用django的orm存储，安装插件
+ pip install django-celery-results
+ django_celery_results 添加到installed-apps中
+ python manage.py migrate django_celery_results
+ 
+ django  使用celery定时任务
+ pip install django-celery-beat
+ django_celery_beat 添加到installed-apps中
+ python manage.py migrate django_celery_beat
  
 

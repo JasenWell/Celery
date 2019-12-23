@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'first.apps.FirstConfig',
     'djcelery',
+    'django_celery_results',
+    'django_celery_beat',
+
 ]
 
 MIDDLEWARE = [
@@ -124,12 +127,13 @@ STATICFILES_DIRS = (
 
 # celery异步框架配置
 djcelery.setup_loader()  # 加载tasks
-BROKER_URL = 'redis://127.0.0.1:6379/0'  # 指定broker
-CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'  # 指定结果存储位置为本地数据库
+CELERY_BROKER_URL = 'redis://:123456@127.0.0.1:6382/0'  # 指定broker
+#CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'  # 指定结果存储位置为本地数据库
+CELERY_RESULT_BACKEND = 'django-db'  #使用django orm 作为结果存储
 # CELERY_RESULT_BACKEND = 'redis://' #指定结果存储位置为redis
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'  # 指定计划任务为本地数据库配置的
-# CELERY_RESULT_BACKEND = 'redis://'  #指定结果存放位置
+CELERY_BEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'  # 指定计划任务为本地数据库配置的
+
