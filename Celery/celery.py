@@ -6,9 +6,8 @@ from celery import Celery
 from django.conf import settings
 
 
-app = Celery('tcelery', backend='amqp://guest@localhost//',
-             broker='redis://localhost:6379/0')  # 创建app实例，并指定backend和broker均为rabbitMQ
-# app = Celery('tcelery', backend='redis://localhost:6379/0', broker='redis://localhost:6379/0')
+#app = Celery('tcelery', backend='amqp://guest@localhost//', broker='redis://localhost:6379/0')  # 创建app实例，并指定backend和broker均为rabbitMQ
+app = Celery('tcelery', backend='redis://:123456@localhost:6382/1', broker='redis://:123456@localhost:6382/0') # redis有密码
 app.conf.CELERY_IGNORE_RESULT = False  # 结果不忽略
 # app.conf.CELERY_RESULT_BACKEND = 'redis://localhost:6379/0' #结果保存在redis中
 

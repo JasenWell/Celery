@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+    <form action="{% url 'first:add' %}" method="get">{% csrf_token %}
+        参数1：<br/>
+        <input name="first" type="text"><br/>
+        参数2：<br/>
+        <input name="second" type="text"><br/>
+        <button type="submit">运行</button>
+    </form>
+
+</body>
+</html>
