@@ -5,7 +5,7 @@ import os
 from celery import Celery
 from django.conf import settings
 
-
+os.environ["DJANGO_SETTINGS_MODULE"] = 'Celery.settings'
 #app = Celery('tcelery', backend='amqp://guest@localhost//', broker='redis://localhost:6379/0')  # 创建app实例，并指定backend和broker均为rabbitMQ
 app = Celery('tcelery', backend='redis://:123456@localhost:6382/1', broker='redis://:123456@localhost:6382/0') # redis有密码
 #app = Celery('tcelery', namespace='CELERY') #  使用CELERY_ 作为前缀，在settings中写配置
