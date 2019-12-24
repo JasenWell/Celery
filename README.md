@@ -51,4 +51,20 @@
  django_celery_beat 添加到installed-apps中
  python manage.py migrate django_celery_beat
  
+ 
+ Python定时任务
+ 1：循环+sleep方式适合简答测试，
+
+2：timer可以实现定时任务，但是对定点任务来说，需要检查当前时间点；
+
+3：schedule可以定点定时执行，但是需要在循环中检测任务，而且存在阻塞；pip install schedule
+
+4：APScheduler框架更加强大，可以直接在里面添加定点与定时任务； pip install apscheduler
+
+综合考虑，决定使用APScheduler框架，实现简单，只需要直接创建任务，并将添加到调度器中即可。
+
+系统监测功能：
+安装psutil：pip install psutil
+
+ 
 
