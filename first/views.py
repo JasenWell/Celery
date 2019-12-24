@@ -107,7 +107,8 @@ def monitorNetWork(logfile=None):
     # 获取当前时间
     now = datetime.datetime.now()
     ts = now.strftime('%Y-%m-%d %H:%M:%S')
-    line = '{} bytessent={}, bytesrecv={}'.format(ts,netinfo.bytes_sent,netinfo.bytes_recv)
+    #line = '{} bytessend={}, bytesrecv={}'.format(ts,netinfo.bytes_sent,netinfo.bytes_recv)
+    line = '{} send={:.2f} mb, recv={:.2f} mb'.format(ts, netinfo.bytes_sent/(1024*1024), netinfo.bytes_recv/(1024*1024))
     print(line)
     if logfile:
         logfile.write(line)
