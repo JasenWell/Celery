@@ -1,10 +1,12 @@
 # coding=utf-8
 import datetime
 import json
+import logging
 import time
 
 import psutil
 import redis
+from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 from django.shortcuts import render
 
 from first.models import Add
@@ -95,7 +97,7 @@ def monitorSystem(logfile=None):
     # 获取当前时间
     now = datetime.datetime.now()
     ts = now.strftime('%Y-%m-%d %H:%M:%S')
-    line = '{} cpu:{}%, mem:{}%'.format(ts,cpuper,memper)
+    line = '{} cpu:{}%, mem:{}%'.format(ts, cpuper, memper)
     print(line)
     if logfile:
         logfile.write(line)
@@ -107,11 +109,26 @@ def monitorNetWork(logfile=None):
     # 获取当前时间
     now = datetime.datetime.now()
     ts = now.strftime('%Y-%m-%d %H:%M:%S')
-    #line = '{} bytessend={}, bytesrecv={}'.format(ts,netinfo.bytes_sent,netinfo.bytes_recv)
-    line = '{} send={:.2f} mb, recv={:.2f} mb'.format(ts, netinfo.bytes_sent/(1024*1024), netinfo.bytes_recv/(1024*1024))
+    # line = '{} bytessend={}, bytesrecv={}'.format(ts,netinfo.bytes_sent,netinfo.bytes_recv)
+    line = '{} send={:.2f} mb, recv={:.2f} mb'.format(ts, netinfo.bytes_sent / (1024 * 1024),
+                                                      netinfo.bytes_recv / (1024 * 1024))
     print(line)
     if logfile:
         logfile.write(line)
+
+
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%Y-%m-%d %H:%M:%S',
+                    filename='log_apscheduler.txt',
+                    filemode='a')
+
+
+def apschedulerListener(event):
+    if event.exception:
+        print('任务出错了！！！！！！')
+    else:
+        print('任务照常运行...')
 
 
 def doSchedulejob():
@@ -121,6 +138,8 @@ def doSchedulejob():
     scheduler.add_job(monitorSystem, 'interval', seconds=2, id='test_job1')
     # 添加任务,时间间隔5S
     scheduler.add_job(monitorNetWork, 'interval', seconds=3, id='test_job2')
+    scheduler.add_listener(apschedulerListener, EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
+    scheduler._logger = logging
     scheduler.start()
 
 
