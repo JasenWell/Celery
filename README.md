@@ -24,6 +24,12 @@
 
 	解决办法：
 	报错版本redis=3.2.1，降低版本到redis=2.10.6，虚拟环境下使用命令pip install redis==2.10.6
+	
+	celery 启动 TypeError: 'NoneType' object is not iterable
+	原因 执行此命令pip install django-celery-result 把celery什么的也给更新了，会提示不兼容：
+	解决：celery降级到3.X就行了 执行 pip install celery==3.1.26.post2  
+	celery 4.0变化比较大，砍了很多不常用的功能，而且不再支持windows，建议大家暂缓使用 新的celery 4.0与 djcelery 3.1.17不兼容
+
 
  
  爬虫各阶段
@@ -35,12 +41,12 @@
  https://blog.csdn.net/bbwangj/article/details/90573662
  https://www.jianshu.com/p/ec128512af8e celery 常用配置\
  
- 结果存储使用django的orm存储，安装插件
+ 结果存储使用django的orm存储，安装插件  windows下面兼容性不能用
  pip install django-celery-results
  django_celery_results 添加到installed-apps中
  python manage.py migrate django_celery_results
  
- django  使用celery定时任务
+ django  使用celery定时任务  windows下面兼容性不能用
  pip install django-celery-beat
  django_celery_beat 添加到installed-apps中
  python manage.py migrate django_celery_beat

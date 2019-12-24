@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'first.apps.FirstConfig',
     'djcelery',
-    'django_celery_results',
-    'django_celery_beat',
+    #'django_celery_results',
+    #'django_celery_beat',
 
 ]
 
@@ -129,7 +129,7 @@ STATICFILES_DIRS = (
 djcelery.setup_loader()  # 加载tasks
 CELERY_BROKER_URL = 'redis://:123456@127.0.0.1:6382/0'  # 指定broker
 #CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'  # 指定结果存储位置为本地数据库
-CELERY_RESULT_BACKEND = 'django-db'  #使用django orm 作为结果存储
+#CELERY_RESULT_BACKEND = 'django-db'  #使用django orm 作为结果存储
 # CELERY_RESULT_BACKEND = 'redis://' #指定结果存储位置为redis
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
