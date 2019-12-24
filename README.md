@@ -62,6 +62,8 @@
 4：APScheduler框架更加强大，可以直接在里面添加定点与定时任务； pip install apscheduler
 
 综合考虑，决定使用APScheduler框架，实现简单，只需要直接创建任务，并将添加到调度器中即可。
+https://mp.weixin.qq.com/s/TTUFQRQ_DiKktJ5-J8O8Pg
+https://blog.csdn.net/somezz/article/details/83104368 aspcheduler讲解
 
 系统监测功能：
 安装psutil：pip install psutil
