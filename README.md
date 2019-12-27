@@ -7,7 +7,8 @@
 
  
  https://files.pythonhosted.org/packages/ 虚拟路径新增仓库url  
- https://blog.csdn.net/Dontla/article/details/100176224  将项目包导出到requirements.txt中,批量安装
+ https://blog.csdn.net/Dontla/article/details/100176224  将项目包导出到requirements.txt中,批量安装  pip freeze > requirements.txt 
+ 虚拟环境下安装 pip install -r requirements.txt  # 不要忘了后缀名
  
  
  django框架下的celery,可以进入项目虚拟环境安装
